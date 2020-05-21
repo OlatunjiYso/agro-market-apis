@@ -8,7 +8,7 @@ exports.up = function(knex) {
       table.string('market_desc');
       table.datetime('market_created_at').defaultTo(knex.fn.now());
       table.datetime('market_updated_at');
-      table.foreign('category_id').references('categories.category_id')
+      table.foreign('category_id').references('categories.category_id').onDelete('CASCADE')
   })
 };
 

@@ -7,7 +7,7 @@ exports.up = function(knex) {
       table.string('image_url', 225);
       table.datetime('image_created_at').defaultTo(knex.fn.now());
       table.datetime('image_updated_at');
-      table.foreign('market_id').references('markets.market_id')
+      table.foreign('market_id').references('markets.market_id').onDelete('CASCADE');
   })
 };
 

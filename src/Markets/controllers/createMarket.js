@@ -14,7 +14,6 @@ export const createMarket = async(req, res) => {
         const marketId = marketRecord[0];
         await dbClient(imagesTable).insert({ market_id: marketId, image_url: imageUrl });
         await dbClient(locationsTable).insert({ market_id: marketId, lat, lng });
-
         return res.status(201)
         .json({
             name,

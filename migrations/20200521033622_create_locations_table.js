@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.float('lng', 10,6);
         table.datetime('location_created_at').defaultTo(knex.fn.now());
         table.datetime('location_updated_at');
-        table.foreign('market_id').references('markets.market_id')
+        table.foreign('market_id').references('markets.market_id').onDelete('CASCADE')
     })
   };
   
