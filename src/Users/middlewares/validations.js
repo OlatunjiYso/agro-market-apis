@@ -2,8 +2,6 @@ import validator from 'validator';
 
 /**
  * @description - checks if email is valid or not.
- * @param {array} errors  - array to contain all validation errors
- * @param {string} email - email to be checked.
  */
 const validateEmail = (errors, email) => {
   if (!email) {
@@ -18,8 +16,6 @@ const validateEmail = (errors, email) => {
 
 /**
  * @description - checks if password is valid or not
- * @param {array} errors  - array to contain all validation errors
- * @param {string} password - password to be checked.
  */
 const validatePassword = (errors, password) => {
   if (!password) {
@@ -35,8 +31,6 @@ const validatePassword = (errors, password) => {
 
 /**
  * @description - validates login.
- * @param {req} req  - request object
- * @param {res} res - response object
  */
 export const validateLogin = (req, res, next) => {
   let { email, password } = req.body;
@@ -59,8 +53,6 @@ export const validateLogin = (req, res, next) => {
 
 /**
  * @description - validates signup.
- * @param {req} req  - request object
- * @param {res} res - response object
  */
 export const validateSignup = (req, res, next) => {
     let { email, password } = req.body;
