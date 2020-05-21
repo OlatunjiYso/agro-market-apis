@@ -1,5 +1,4 @@
 import dbClient from "../../db/knex";
-
 import { marketsTable } from "../../db/tables";
 
 

@@ -24,28 +24,49 @@ export const validateAddingMarket = (req, res, next) => {
   next();
 };
 
-
 /**
  * @description - checks marketId provided for deleting market.
  */
 export const validateDeletingMarket = (req, res, next) => {
-    const { marketId } = req.params;
-    let errors = [];
-    if (!marketId || !validator.isInt(marketId)) errors.push("invalid marketId");
-  
-    if (errors.length > 0) {
-      return res.status(400).json({
-        msg: "validation errors encountered while deleting market",
-        errors,
-      });
-    }
-    next();
-  };
+  const { marketId } = req.params;
+  let errors = [];
+  if (!validId(marketId)) errors.push("invalid marketId");
 
+  if (errors.length > 0) {
+    return res.status(400).json({
+      msg: "validation errors encountered while deleting market",
+      errors,
+    });
+  }
+  next();
+};
+
+/**
+ * @description - checks marketId provided for fetching market.
+ */
+export const validateFetchingMarket = (req, res, next) => {
+  const { marketId } = req.params;
+  let errors = [];
+  if (!validId(marketId)) errors.push("invalid marketId");
+
+  if (errors.length > 0) {
+    return res.status(400).json({
+      msg: "validation errors encountered while fetching  market",
+      errors,
+    });
+  }
+  next();
+};
 
 const validString = (string) => {
   let valid = true;
   if (!string || typeof string == null) valid = false;
-  if (string && validator.isEmpty(string, {ignore_whitespace:true})) valid = false;
+  if (string && validator.isEmpty(string, { ignore_whitespace: true }))
+    valid = false;
   return valid;
+};
+
+const validId = (id) => {
+  if (!id || !validator.isInt(id)) return false;
+  return true;
 };
