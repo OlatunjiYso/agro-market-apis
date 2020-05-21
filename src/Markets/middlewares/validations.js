@@ -3,7 +3,7 @@ import validator from "validator";
 /**
  * @description - checks if market information is valid or not.
  */
-export const validateMarket = (req, res, next) => {
+export const validateAddingMarket = (req, res, next) => {
   const { name, description, address, categoryId, imageUrl } = req.body;
   let errors = [];
   if (!validString(name)) errors.push("name cannot be blank");
@@ -23,6 +23,25 @@ export const validateMarket = (req, res, next) => {
   }
   next();
 };
+
+
+/**
+ * @description - checks marketId provided for deleting market.
+ */
+export const validateDeletingMarket = (req, res, next) => {
+    const { marketId } = req.params;
+    let errors = [];
+    if (!marketId || !validator.isInt(marketId)) errors.push("invalid marketId");
+  
+    if (errors.length > 0) {
+      return res.status(400).json({
+        msg: "validation errors encountered while deleting market",
+        errors,
+      });
+    }
+    next();
+  };
+
 
 const validString = (string) => {
   let valid = true;
