@@ -5,6 +5,7 @@ import "regenerator-runtime/runtime";
 
 
 import { authHandler } from './Users/routes';
+import { marketHandler } from './Markets/routes';
 
 const app = express();
 app.use(cors());
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use('/auth', authHandler);
-
+app.use('/market', marketHandler);
 
 app.listen(process.env.PORT, () => {
     if(process.env.NODE_ENV === 'developement') {
